@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>    
+
+    <menuitem   id="menu_box_root"
+                name="SuperBox"
+                web_icon="box,static/description/box.png"
+                sequence="0"/>
+
+    <menuitem   id="menu_box_master"
+                name="Box Details"
+                parent="menu_box_root"
+                sequence="0"/>
+
+    <menuitem   id="menu_box"
+                name="Box"
+                action="action_superbox_box"
+                parent="menu_box_master"
+                sequence="0"/>
+
+</odoo>

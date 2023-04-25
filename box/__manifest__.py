@@ -1,0 +1,27 @@
+{
+    'name': "box",	
+    'summary': 'box',
+    'description': """    """,
+    'author': "Viindoo",
+    'website': "https://viindoo.com",
+    'live_test_url': "https://v15demo-int.erponline.vn",
+    'live_test_url_vi_VN': "https://v15demo-vn.erponline.vn",
+    'support': "apps.support@viindoo.com",   
+    'category': 'Box',
+    'version': '1.0.0',
+    'sequence: 0'
+    'depends': ['base'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/menu.xml',
+        'views/box_view.xml',
+    ],
+    'demo': [],
+    'images' : ['/static/description/box.png'],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'price': 10.000,
+    'currency': 'VND',
+    'license': 'LGPL-3',
+}
