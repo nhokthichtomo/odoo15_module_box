@@ -10,7 +10,8 @@ class Student(models.Model):
     id = fields.Integer(string='Id', required=True)
     address = fields.Text(string='Address')
     score = fields.Float(string='Score')
-
+    has_experience = fields.Boolean(string='Has Experience', default=False)
+    
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'The name must be unique'),
         ('positive_age', 'CHECK(age >= 0)', 'Age must be positive'),

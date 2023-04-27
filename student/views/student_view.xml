@@ -13,6 +13,7 @@
                 <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
+                <field name="has_experience"/>
             </tree>
         </field>
     </record>
@@ -29,6 +30,7 @@
                             <field name="id" string="Student id"/>
                             <field name="name" string="Student Name"/>
                             <field name="age" string="age"/>
+                            <field name="has_experience"/>
                         </group>
                         <group>
                             <field name="gender" string="gender"/>
@@ -53,6 +55,7 @@
                 <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
+                <field name="has_experience"/>
             </search>
         </field>
     </record>
@@ -69,6 +72,7 @@
                 <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
+                <field name="has_experience"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
@@ -85,6 +89,7 @@
                                 <div>Gender: <field name="gender" string="gender"/></div>
                                 <div>Andress: <field name="address"/></div>
                                 <div>Score: <field name="score"/></div>
+                                <div><field name="has_experience"/></div>
                             </div>
                         </div>
                     </t>
