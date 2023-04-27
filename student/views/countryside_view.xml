@@ -58,8 +58,14 @@
                         <div class="oe_kanban_card">
                             <div class="oe_kanban_card_header">
                                 <div class="oe_kanban_card_title">
-                                    <field name="name"/>
-                                </div>                                
+                                    Countryside: <field name="name"/>
+                                </div>
+                                <div class="oe_kanban_card_subtitle">
+                                    Code: <field name="code"/>
+                                </div>
+                                <div class="oe_kanban_card_content">
+                                    Province: <field name="province"/>                                    
+                                </div>                                                                
                             </div>                            
                         </div>
                     </t>

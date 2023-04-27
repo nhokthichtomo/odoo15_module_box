@@ -5,7 +5,7 @@ class City(models.Model):
     _description = 'City'
 
     name = fields.Char(string='Name', required=True)
-    country = fields.Integer(string='Country', required=True)
+    code = fields.Integer(string='Code', required=True)
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'Name must be unique within the country')        

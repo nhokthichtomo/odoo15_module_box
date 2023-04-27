@@ -8,7 +8,7 @@
         <field name="arch" type="xml">
             <tree>                
                 <field name="name" string="City Name"/>
-                <field name="country" string="Country"/>
+                <field name="code" string="code"/>
             </tree>
         </field>
     </record>
@@ -22,7 +22,7 @@
                 <sheet>
                     <group>
                         <field name="name" string="City Name"/>
-                        <field name="country" string="Country"/>
+                        <field name="code" string="code"/>
                     </group>
                 </sheet>
             </form>
@@ -36,7 +36,7 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" string="City Name"/>
-                <field name="country" string="Country"/>
+                <field name="code" string="code"/>
             </search>
         </field>
     </record>
@@ -48,16 +48,16 @@
         <field name="arch" type="xml">
             <kanban>
                 <field name="name" string="City Name"/>
-                <field name="country" string="Country"/>
+                <field name="code" string="code"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
                             <div class="oe_kanban_card_header">
                                 <div class="oe_kanban_card_title">
-                                    <field name="name"/>
+                                    City: <field name="name"/>
                                 </div>
                                 <div class="oe_kanban_card_subtitle">
-                                    <field name="country"/>
+                                    Code: <field name="code"/>
                                 </div>
                             </div>                            
                         </div>

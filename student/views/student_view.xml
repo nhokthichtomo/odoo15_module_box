@@ -7,12 +7,12 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="id" string="Student id"/>
+                <field name="code" string="Student code"/>
                 <field name="name" string="Student Name"/>
-                <field name="age" string="age"/>
-                <field name="gender" string="gender"/>
+                <field name="age" string="Age"/>
+                <field name="gender" string="Gender"/>
                 <field name="address"/>
-                <field name="score"/>
+                <field name="ranking"/>
                 <field name="has_experience"/>
             </tree>
         </field>
@@ -27,15 +27,15 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="id" string="Student id"/>
+                            <field name="code" string="Student code"/>
                             <field name="name" string="Student Name"/>
-                            <field name="age" string="age"/>
+                            <field name="age" string="Age"/>
                             <field name="has_experience"/>
                         </group>
                         <group>
-                            <field name="gender" string="gender"/>
+                            <field name="gender" string="Gender"/>
                             <field name="address"/>
-                            <field name="score"/>
+                            <field name="ranking"/>
                         </group>
                     </group>
                 </sheet>
@@ -49,12 +49,12 @@
         <field name="type">search</field>
         <field name="arch" type="xml">
             <search>
-                <field name="id" string="Student id"/>
+                <field name="code" string="Student code"/>
                 <field name="name" string="Student Name"/>
-                <field name="age" string="age"/>
-                <field name="gender" string="gender"/>
+                <field name="age" string="Age"/>
+                <field name="gender" string="Gender"/>
                 <field name="address"/>
-                <field name="score"/>
+                <field name="ranking"/>
                 <field name="has_experience"/>
             </search>
         </field>
@@ -66,30 +66,30 @@
         <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="id" string="Student id"/>
+                <field name="code" string="Student code"/>
                 <field name="name" string="Student Name"/>
-                <field name="age" string="age"/>
-                <field name="gender" string="gender"/>
+                <field name="age" string="Age"/>
+                <field name="gender" string="Gender"/>
                 <field name="address"/>
-                <field name="score"/>
+                <field name="ranking"/>
                 <field name="has_experience"/>
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
                             <div class="oe_kanban_card_header">
                                 <div class="oe_kanban_card_title">
-                                    <field name="name"/>
+                                    Name: <field name="name"/>
                                 </div>
                                 <div class="oe_kanban_card_subtitle">
-                                    <field name="id"/>
+                                    Code: <field name="code"/>
                                 </div>
                             </div>
                             <div class="oe_kanban_card_content">
                                 <div>Age: <field name="age" string="age"/></div>
                                 <div>Gender: <field name="gender" string="gender"/></div>
                                 <div>Andress: <field name="address"/></div>
-                                <div>Score: <field name="score"/></div>
-                                <div><field name="has_experience"/></div>
+                                <div>Ranking: <field name="ranking"/></div>
+                                <div>Experience: <field name="has_experience"/></div>
                             </div>
                         </div>
                     </t>

@@ -47,15 +47,18 @@
         <field name="type">kanban</field>
         <field name="arch" type="xml">
             <kanban>
-                <field name="name" string="language Name"/>
+                <field name="name" string="Language Name"/>
                 <field name="level" string="Language Level"/> 
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card">
                             <div class="oe_kanban_card_header">
                                 <div class="oe_kanban_card_title">
-                                    <field name="name"/>
-                                </div>                                
+                                    Language: <field name="name"/>
+                                </div>
+                                <div class="oe_kanban_card_content">
+                                    Level: <field name="level"/>                                    
+                                </div>                                                                
                             </div>                            
                         </div>
                     </t>

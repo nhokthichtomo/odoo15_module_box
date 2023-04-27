@@ -62,7 +62,12 @@
                         <div class="oe_kanban_card">
                             <div class="oe_kanban_card_header">
                                 <div class="oe_kanban_card_title">
-                                    <field name="name"/>
+                                    Name: <field name="name"/>
+                                </div>
+                                <div class="oe_kanban_card_content">
+                                    <div>Level: <field name="level"/></div>
+                                    <div>Address: <field name="address"/></div>                
+                                    <div>Website: <field name="website"/></div>
                                 </div>                                
                             </div>                            
                         </div>
