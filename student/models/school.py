@@ -6,7 +6,7 @@ class School(models.Model):
 
     name = fields.Char(string='name', required=True)
     website = fields.Char(string='Website')
-    address = fields.Text(string="address")
+    address = fields.Text(string="Address")
     level = fields.Selection(selection=[('primary ','Frimary School'), ('secondary ', 'Secondary School'),
                                             ('high ', 'High School'), ('university', 'University')], string='level', required=True)
 

@@ -1,8 +1,8 @@
 from odoo import models, fields
 
-class FluentLanguage(models.Model):
-    _name = 'fluent_language'
-    _description = 'Fluent Language'
+class Language(models.Model):
+    _name = 'language'
+    _description = 'Language'
 
     name = fields.Char(string='Name', required=True)
     level = fields.Selection([('beginner', 'Beginner'), ('intermediate', 'Intermediate'), ('advanced', 'Advanced')],string='Level',required=True)

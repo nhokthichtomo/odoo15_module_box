@@ -105,14 +105,38 @@
             </p>
         </field>    
     </record>
-
-    <menuitem   id="menu_student_root"
-                name="Student"
-                sequence="0"/>
     
-    <menuitem   id="menu_student"
-                name="Student Details"                
-                parent="menu_student_root"                                               
-                sequence="0"/>
+        <menuitem   id="menu_student_root"
+                    name="Student"                                   
+                    sequence="0"/>
+
+        <menuitem   id="menu_student"
+                    action="action_student"
+                    parent="menu_student_root"                                   
+                    sequence="0"/>
+
+        <menuitem   id="menu_school"
+                    name="School"
+                    action="action_school"
+                    parent="menu_student_root"
+                    sequence="1"/>
+
+        <menuitem   id="menu_city"
+                    name="City"
+                    action="action_city"
+                    parent="menu_student_root"
+                    sequence="2"/>
+
+        <menuitem   id="menu_countryside"
+                    name="Countryside"
+                    action="action_countryside"
+                    parent="menu_student_root"
+                    sequence="3"/>
+        
+        <menuitem   id="menu_language"
+                    name="Language"
+                    action="action_language"
+                    parent="menu_student_root"
+                    sequence="4"/>
 
 </odoo>

@@ -5,16 +5,16 @@
     'author': "Nhok",
     'website': "https://viindoo.com",
     'category': 'Student in the Earth',
-    'version': '1.0.0',
+    'version': '1.0.1',
     'sequence': 1,
     'depends': ['base'],
-    'data': [
+    'data': [        
         'security/ir.model.access.csv',
-        'views/city.xml',
-        'views/countryside.xml',
-        'views/school.xml',
-        'views/language.xml',
-        'views/student_view.xml'
+        'views/city_view.xml',
+        'views/countryside_view.xml',
+        'views/school_view.xml',
+        'views/language_view.xml',
+        'views/student_view.xml',
         ],
     'images': [],
     'installable': True,
