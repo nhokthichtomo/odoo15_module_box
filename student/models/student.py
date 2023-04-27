@@ -13,7 +13,7 @@ class Student(models.Model):
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'The name must be unique'),
-        ('positive_age', 'CHECK(age >= 0)', 'Age must be positive', 'Age must be positive'),
+        ('positive_age', 'CHECK(age >= 0)', 'Age must be positive'),
         ('valid_gender', 'CHECK(gender IN (\'male\', \'female\'))', 'Gender must be Male or Female'),
         ('valid_score', 'CHECK(score >= 0 AND score <= 10)', 'Score must be between 0 and 10')
     ]
