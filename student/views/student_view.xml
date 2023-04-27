@@ -9,8 +9,8 @@
             <tree>
                 <field name="id" string="Student id"/>
                 <field name="name" string="Student Name"/>
-                <field name="age"/>
-                <field name="gender"/>
+                <field name="age" string="age"/>
+                <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
             </tree>
@@ -28,10 +28,10 @@
                         <group>
                             <field name="id" string="Student id"/>
                             <field name="name" string="Student Name"/>
-                            <field name="age"/>
+                            <field name="age" string="age"/>
                         </group>
                         <group>
-                            <field name="gender"/>
+                            <field name="gender" string="gender"/>
                             <field name="address"/>
                             <field name="score"/>
                         </group>
@@ -49,8 +49,8 @@
             <search>
                 <field name="id" string="Student id"/>
                 <field name="name" string="Student Name"/>
-                <field name="age"/>
-                <field name="gender"/>
+                <field name="age" string="age"/>
+                <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
             </search>
@@ -65,8 +65,8 @@
             <kanban>
                 <field name="id" string="Student id"/>
                 <field name="name" string="Student Name"/>
-                <field name="age"/>
-                <field name="gender"/>
+                <field name="age" string="age"/>
+                <field name="gender" string="gender"/>
                 <field name="address"/>
                 <field name="score"/>
                 <templates>
@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                             <div class="oe_kanban_card_content">
-                                <div>Age: <field name="age"/></div>
-                                <div>Gender: <field name="gender"/></div>
+                                <div>Age: <field name="age" string="age"/></div>
+                                <div>Gender: <field name="gender" string="gender"/></div>
                                 <div>Andress: <field name="address"/></div>
                                 <div>Score: <field name="score"/></div>
                             </div>
@@ -97,7 +97,7 @@
         <field name="name">Student</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">student</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban,search</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -106,6 +106,13 @@
         </field>    
     </record>
 
+    <menuitem   id="menu_student_root"
+                name="Student"
+                sequence="0"/>
     
+    <menuitem   id="menu_student"
+                name="Student Details"                
+                parent="menu_student_root"                                               
+                sequence="0"/>
 
 </odoo>

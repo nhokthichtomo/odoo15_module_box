@@ -10,7 +10,10 @@
     'depends': ['base'],
     'data': [
         'security/ir.model.access.csv',
-        'views/menu.xml',
+        'views/city.xml',
+        'views/countryside.xml',
+        'views/school.xml',
+        'views/language.xml',
         'views/student_view.xml'
         ],
     'images': [],
