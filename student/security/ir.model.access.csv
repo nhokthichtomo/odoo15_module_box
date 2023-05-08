@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.student,access_student,model_student,base.group_user,1,1,1,1
+access.school,access_school,model_school,base.group_user,1,1,1,1
+access.language,access_language,model_language,base.group_user,1,1,1,1
+access.student_inheritance,access_student_inheritance,model_student_inheritance,base.group_user,1,1,1,1
+access.student_update_wizard,access_student_update_wizard,model_student_update_wizard,base.group_user,1,1,1,1
+
+access.student_test,access_student_test,model_student_test,base.group_user,1,1,1,1
+access.sale_order_line,access_sale_order_line,model_sale_order_line,base.group_user,1,1,1,1
