@@ -8,7 +8,8 @@
     'version': '1.0.2',
     'sequence': 1,
     'depends': ['base'],
-    'data': [        
+    'data': [  
+        #'data/student.xml',      
         'security/ir.model.access.csv',
         'security/student_security.xml',
         'views/school_view.xml',        

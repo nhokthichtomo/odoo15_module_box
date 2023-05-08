@@ -21,6 +21,9 @@ class StudentTest(models.Model):
     attendance_time_start = fields.Datetime(string='Attendance time start')
     order_lines = fields.One2many('sale.order.line', 'order_id', string='Order Lines')
     total_score = fields.Float(string='Total Score', compute='_compute_total_score', store=True)
+    date_start = fields.Date(string='Start Date')
+    date_end = fields.Date(string='End Date')
+    project_id = fields.Many2one('project.project', string='Project')
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'The name must be unique'),

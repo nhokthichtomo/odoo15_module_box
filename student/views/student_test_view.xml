@@ -25,7 +25,7 @@
                     <field name="total_score"/>                              
                 </tree>            
             </field>
-        </record>
+        </record>        
 
         <record id="view_student_test_form" model="ir.ui.view">
             <field name="name">student.test.form</field>
@@ -134,6 +134,28 @@
             </field>
         </record>
 
+        <record id="view_student_test_calendar" model="ir.ui.view">
+            <field name="name">student.test.calendar</field>
+            <field name="model">student.test</field>
+            <field name="type">calendar</field>
+            <field name="arch" type="xml">
+                <calendar date_start="date_start" date_stop="date_end" color="project_id" __validate__="1">                     
+                    <field name="name" string="Student Name"/>                    
+                </calendar>            
+            </field>
+        </record>
+
+        <record id="view_student_test_graph" model="ir.ui.view">
+            <field name="name">student.test.graph</field>
+            <field name="model">student.test</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="code" string="Student code"/>
+                    <field name="name" string="Student Name"/>
+                </graph>
+            </field>
+        </record>
+
         <record id="view_student_test_search" model="ir.ui.view">
             <field name="name">student.test.search</field>
             <field name="model">student.test</field>
@@ -145,9 +167,7 @@
                     <field name="age" string="Age"/>
                     <field name="gender" string="Gender"/>
                     <field name="address"/>
-                    <field name="ranking"/>
-                    <field name="has_experience"/>
-                    
+                    <field name="ranking"/>                    
                 </search>
             </field>
         </record>    
@@ -156,9 +176,7 @@
             <field name="name">Test</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">student.test</field>
-            <field name="view_mode">tree,form,kanban</field>  
-            
-            
+            <field name="view_mode">tree,form,kanban,calendar,graph</field>
         </record>
     </data>
 </odoo>

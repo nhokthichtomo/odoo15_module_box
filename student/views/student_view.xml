@@ -46,6 +46,7 @@
                             <field name="city"/>
                         </group>
                         <group>
+                            <field name="email"/>
                             <field name="date_of_birth"/>
                             <field name="gender"/>
                         </group>                                                    
@@ -161,11 +162,33 @@
         </field>
     </record>
 
+    <record id="view_student_calendar" model="ir.ui.view">
+        <field name="name">student.calendar</field>
+        <field name="model">student</field>
+        <field name="type">calendar</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date_start" date_stop="date_end" color="project_id" __validate__="1">                     
+                <field name="name" string="Student Name"/>                    
+            </calendar>            
+        </field>
+    </record>
+
+    <record id="view_student_test_graph" model="ir.ui.view">
+            <field name="name">student.test.graph</field>
+            <field name="model">student.test</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="code" string="Student code"/>
+                    <field name="name" string="Student Name"/>
+                </graph>
+            </field>
+        </record>
+
     <record id="action_student" model="ir.actions.act_window">
         <field name="name">Student</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">student</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">tree,form,kanban,calendar,graph</field>
         <field name="context">{}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">

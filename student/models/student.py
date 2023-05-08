@@ -20,6 +20,9 @@ class Student(models.Model):
     score = fields.Float(String='Score')
     total_score = fields.Float(string='Total Score', compute='_compute_total_score', store=True)
     logo = fields.Image(string='Logo', max_width=128, max_height=128)
+    date_start = fields.Date(string='Start Date')
+    date_end = fields.Date(string='End Date')
+    project_id = fields.Many2one('project.project', string='Project')
     
     _sql_constraints = [        
         ('unique_name', 'unique(name)', 'The name must be unique'),
