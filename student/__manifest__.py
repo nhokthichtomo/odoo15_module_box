@@ -11,7 +11,7 @@
     'data': [  
         #'data/student.xml',      
         'security/ir.model.access.csv',
-        'security/student_security.xml',
+        #'security/student_security.xml',
         'views/school_view.xml',        
         'views/student_view.xml',
         'views/student_test_view.xml',

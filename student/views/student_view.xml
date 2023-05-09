@@ -213,11 +213,7 @@
                     parent="menu_student_root"
                     sequence="1"/>       
                     
-        <menuitem   id="menu_student_test"
-                    name="Test"
-                    action="action_student_test"
-                    parent="menu_student_root"
-                    sequence="3"/>
+        
 
         
         

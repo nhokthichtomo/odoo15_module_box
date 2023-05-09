@@ -179,4 +179,10 @@
             <field name="view_mode">tree,form,kanban,calendar,graph</field>
         </record>
     </data>
+
+    <menuitem   id="menu_student_test"
+                    name="Test"
+                    action="action_student_test"
+                    parent="menu_student_root"
+                    sequence="3"/>
 </odoo>

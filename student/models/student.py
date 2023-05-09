@@ -23,6 +23,7 @@ class Student(models.Model):
     date_start = fields.Date(string='Start Date')
     date_end = fields.Date(string='End Date')
     project_id = fields.Many2one('project.project', string='Project')
+    teacher_id = fields.Many2one('teacher', string='Teacher')
     
     _sql_constraints = [        
         ('unique_name', 'unique(name)', 'The name must be unique'),
@@ -47,19 +48,26 @@ class Student(models.Model):
         for record in self:
             total = record.score * 1
             if record.ranking == 'very good':
-                total >= 3.2
+                total == 3.2,
             elif record.ranking == 'good':
-                total >= 2.5
+                total == 2.5,
             elif record.ranking == 'average':
-                total >= 2.0
+                total == 2.0,
             else:
-                total >= 0.8
+                total == 0.8,
             record.total_score = total
     
-    @api.depends_context('score')
-    def _compute_score(self):
-        for record in self:
-            record.score = record.score / record.total_score
+    @api.depends_context('language')
+    def _compute_name(self):
+        for student in self:
+            if student.name_en and student.name_vi:
+                if self.env.context.get('language') == 'vi_VI':
+                    student.name = student.name_vi
+                else:
+                    student.name = student.name_en
+            else:
+                student.name = student.name_en or student.name_vi
+   
             
             
    
@@ -93,24 +101,6 @@ class Student(models.Model):
             if record.code < 0:
                 raise ValidationError('Code must be positive')
             
-
-    @api.model
-    def create(self, vals):
-        # Perform some custom logic before creating a new record
-        return super(Student, self).create(vals)
-    
-    @api.model
-    def write(self, vals):
-        # Perform some custom logic before updating a record
-        return super(Student, self).write(vals)
-    
-    
-    
-    @api.model
-    def unlink_group(self):
-        # Perform some custom logic before deleting a record
-        return super(Student, self).unlink_group()        
-    
     @api.model_create_multi
     def create(self, vals_list):
         records = super(Student, self).create(vals_list)
@@ -128,4 +118,56 @@ class Student(models.Model):
             user.write({'groups_id': [(4, group.id)]})
     
     
+    @api.model
+    def copy(self, vals=None):
+        new_student = Student(self.name, self.age)
+        if vals:
+            # update any additional properties based on vals
+            pass
+        return new_student
+    
+    @api.model
+    def copy_data(self, default=None):
+        new_defaults = {'title': ("%s (copy)") % (self.title)}
+        default = dict(new_defaults, **(default or {}))
+        return super(Student, self).copy_data(default)
+    
+    @api.model
+    def get_student_info(self):        #được sử dụng để lấy tất cả sinh viên và tên giáo viên tương ứng của họ
+        students = self.env['student'].search([])
+        # prefetch() để tải trước trường teacher_id cho tất cả sinh viên. 
+        # Sau đó, chúng ta truy xuất tên giáo viên bằng cách sử dụng trường teacher_id.name mà không cần phải tải trường teacher_id mỗi lần truy xuất.
+        students.prefetch(['teacher_id'])
+        result = []
+        for student in students:
+            result.append({
+                'name': student.name,
+                'age': student.age,
+                'score': student.score,
+                'teacher_name': student.teacher_id.name,
+            })
+        return result
+    
+    @api.model
+    def _get_cached_value(self, key):        
+        return self.env.cache.get(key)
 
+    @api.model
+    def _set_cached_value(self, key, value):        
+        self.env.cache.set(key, value)
+
+    @api.model
+    def get_average_score(self):
+        
+        cache_key = 'student_average_score'
+        cached_value = self._get_cached_value(cache_key)
+        if cached_value:
+            return cached_value
+
+        # If the value is not in the cache, compute it and store it in the cache
+        students = self.env['student'].search([])
+        total_score = sum(student.score for student in students)
+        average_score = total_score / len(students) if students else 0.0
+        self._set_cached_value(cache_key, average_score)
+        return average_score
+    

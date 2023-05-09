@@ -33,4 +33,4 @@ class School(models.Model):
         if self.website:
             self.website = self.website.replace('http://', '').replace('https://', '')
         
-        
+    
