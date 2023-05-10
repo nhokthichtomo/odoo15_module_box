@@ -28,8 +28,5 @@
             <field name="users" eval="[(4, ref('base.user_root')),(4, ref('base.user_admin'))]" />
             <field name="comment">Users belong to this group can control this application</field>
         </record>
-
-        
-
     </data>
 </odoo>

@@ -8,20 +8,20 @@ class UpdateWizard(models.TransientModel):
     _name = "student.update.wizard"
     _description = "Update for student model"
     
-    name = fields.Char(string='Name', required=True)    #(required=True : gia tri bat buoc)
-    age = fields.Integer(string='Age', required=True)
+    name = fields.Char(string='Name')    #(required=True : gia tri bat buoc)
+    age = fields.Integer(string='Age')
     date_of_birth = fields.Date(string='Date of birth')
-    gender = fields.Selection(selection=[('male', 'Male'), ('female', 'Female')], string='Gender', required=True, default='false')
-    code = fields.Integer(string='Code', required=True)    
-    address = fields.Text(string='Address')
-    ranking = fields.Selection(selection=[('very good', 'Very Good'), ('good', 'Good'), ('average', 'Average'), ('weak', 'Weak')], string='Ranking', compute='_compute_total_score')
-    has_experience = fields.Boolean(string='Has Experience', default=False)     
+    gender = fields.Selection(selection=[('male', 'Male'), ('female', 'Female')], string='Gender', default='false')
+    code = fields.Integer(string='Code')    
+    address = fields.Text(string='Address')    
+    has_experience = fields.Boolean(string='Has Experience', default=False)
     city = fields.Text(string='City')
     introduce = fields.Html(string='Introduce')
     attendance_time_start = fields.Datetime(string='Attendance time start')
-    email = fields.Char(string='Email', required=True)
+    email = fields.Char(string='Email')
     score = fields.Float(String='Score')    
-    logo = fields.Image(string='Logo', max_width=128, max_height=128)
+    logo = fields.Image(string='Logo', max_width=128, max_height=128)    
+    
     
     def multi_update(self):
         ids = self.env.context['active_ids'] # selected record ids
@@ -39,9 +39,7 @@ class UpdateWizard(models.TransientModel):
         if self.code:
             new_data["code"] = self.code
         if self.address:
-            new_data["address"] = self.address
-        if self.ranking:
-            new_data["ranking"] = self.ranking
+            new_data["address"] = self.address        
         if self.has_experience:
             new_data["has_experience"] = self.has_experience
         if self.city:

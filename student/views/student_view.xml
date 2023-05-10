@@ -50,7 +50,7 @@
                             <field name="gender"/>
                             <field name="has_experience"/>
                         </group>                                                    
-                        </group>
+                    </group>
                     <notebook>
                         <page name="general_information" string="General Information">
 							<group>
@@ -166,16 +166,16 @@
         </field>
     </record>
 
-    <record id="view_student_test_graph" model="ir.ui.view">
-            <field name="name">student.test.graph</field>
-            <field name="model">student.test</field>
-            <field name="arch" type="xml">
-                <graph type="bar">
-                    <field name="code" string="Student code"/>
-                    <field name="name" string="Student Name"/>
-                </graph>
-            </field>
-        </record>
+    <record id="view_student_graph" model="ir.ui.view">
+        <field name="name">student.graph</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <graph type="bar">
+                <field name="code" string="Student code"/>
+                <field name="name" string="Student Name"/>
+            </graph>
+        </field>
+    </record>
 
     <record id="action_student" model="ir.actions.act_window">
         <field name="name">Student</field>

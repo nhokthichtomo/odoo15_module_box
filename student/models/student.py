@@ -53,41 +53,31 @@ class Student(models.Model):
             else:
                 record.ranking = 'weak'            
     
-    @api.depends_context('language')
-    def _compute_name(self):
-        for student in self:
-            if student.name_en and student.name_vi:
-                if self.env.context.get('language') == 'vi_VI':
-                    student.name = student.name_vi
-                else:
-                    student.name = student.name_en
-            else:
-                student.name = student.name_en or student.name_vi            
+    @api.depends_context('email')
+    def _compute_email(self):   #tính toán giá trị của trường email dựa trên giá trị của context email
+        #Khi có sự thay đổi về giá trị của context email, Odoo sẽ tự động tính toán lại giá trị của trường email bằng cách gọi phương thức _compute_email.
+        if self.env.context.get('email'):
+            self.email = self.env.context['email']
+        else:
+            self.email = ''
             
    
     @api.constrains('score')
     def _check_score(self):
+        #kiểm tra giá trị của trường score trên model
         for record in self:
             if record.score < 0 or record.score > 4:
-                raise ValidationError('Age must be between 0 and 4')
-            
-    @api.constrains('age')
-    def _check_age(self):
-        for record in self:
-            if record.age < 0 or record.age > 100:
-                raise ValidationError('Age must be between 0 and 100')
+                raise ValidationError('Age must be between 0 and 4')            
+    
             
     @api.onchange('age')
     def _onchange_age(self):
+        #kiểm tra giá trị của trường age trên model
         if self.age < 0:
             self.age = 0
         elif self.age > 100:
-            self.age = 100
-    
-    @api.onchange('score')
-    def _onchange_score(self):
-        if self.score < 0 or self.score > 4:
-            self.score = 0            
+            self.age = 100    
+                
     
     @api.constrains('code')
     def _check_code(self):
@@ -96,9 +86,11 @@ class Student(models.Model):
                 raise ValidationError('Code must be positive')
             
     @api.model_create_multi
-    def create(self, vals_list):
+    #tạo nhiều bản ghi cùng một lúc
+    def create(self, vals_list):    #(đại diện cho model hiện tại, danh sách các dict, mỗi dict chứa thông tin cho một bản ghi mới)
+        #tạo nhiều bản ghi mới với thông tin được chỉ định trong các dict trong vals_list
         records = super(Student, self).create(vals_list)
-        # Perform some custom logic after creating the new records
+        #trả về danh sách các bản ghi được tạo mới
         return records
     
     @api.model
@@ -112,56 +104,51 @@ class Student(models.Model):
             user.write({'groups_id': [(4, group.id)]})
     
     
-    @api.model
-    def copy(self, vals=None):
-        new_student = Student(self.name, self.age)
-        if vals:
-            # update any additional properties based on vals
-            pass
-        return new_student
+    # @api.model
+    # def copy(self, default=None):
+    #     #dict default mới, chuyển tham số default vào hoặc tạo ra một dict rỗng nếu default là None
+    #     default = dict(default or {})
+    #     #thêm một giá trị cho trường name trong dict default
+    #     default.update({'name': 'Copy of %s' % (self.name)})
+    #     #Tạo ra một bản sao của đối tượng hiện tại
+    #     return super(Student, self).copy(default)
+    
+    # @api.model
+    # def search(self, args, offset=0, limit=None, order=None, count=False):
+    #     #tìm kiếm các bản ghi thỏa mãn các điều kiện tìm kiếm được chỉ định.
+    #     records = self.env['student'].search(args, offset=offset, limit=limit, order=order, count=count)
+    #     #trả về danh sách các bản ghi thỏa mãn các điều kiện tìm kiếm
+    #     return records
     
     @api.model
-    def copy_data(self, default=None):
-        new_defaults = {'title': ("%s (copy)") % (self.title)}
-        default = dict(new_defaults, **(default or {}))
-        return super(Student, self).copy_data(default)
+    # tải trước thông tin của trường name cho tất cả các bản ghi trong model
+    def prefetch_name(self):
+        # tìm kiếm tất cả các bản ghi trong model
+        students = self.search([])
+        students.prefetch(['name'])
     
     @api.model
-    def get_student_info(self):        #được sử dụng để lấy tất cả sinh viên và tên giáo viên tương ứng của họ
-        students = self.env['student'].search([])
-        # prefetch() để tải trước trường teacher_id cho tất cả sinh viên. 
-        # Sau đó, chúng ta truy xuất tên giáo viên bằng cách sử dụng trường teacher_id.name mà không cần phải tải trường teacher_id mỗi lần truy xuất.
-        students.prefetch(['teacher_id'])
-        result = []
-        for student in students:
-            result.append({
-                'name': student.name,
-                'age': student.age,
-                'score': student.score,
-                'teacher_name': student.teacher_id.name,
-            })
-        return result
-    
-    @api.model
-    def _get_cached_value(self, key):        
+    # truy xuất giá trị được lưu trữ trong bộ nhớ cache 
+    def _get_cached_value(self, key): 
+        # truy cập đối tượng cache, gọi phương thức get với tham số là key cần truy xuất       
         return self.env.cache.get(key)
 
     @api.model
-    def _set_cached_value(self, key, value):        
+    # lưu trữ giá trị vào bộ nhớ cache
+    def _set_cached_value(self, key, value): 
+        # truy cập đối tượng cache, gọi phương thức set với tham số là key và value cần lưu trữ        
         self.env.cache.set(key, value)
 
     @api.model
-    def get_average_score(self):
-        
-        cache_key = 'student_average_score'
-        cached_value = self._get_cached_value(cache_key)
-        if cached_value:
-            return cached_value
-
-        # If the value is not in the cache, compute it and store it in the cache
-        students = self.env['student'].search([])
-        total_score = sum(student.score for student in students)
-        average_score = total_score / len(students) if students else 0.0
-        self._set_cached_value(cache_key, average_score)
-        return average_score
+    def get_all_students(self):
+        key = 'all_students'
+        # phương thức get của đối tượng cache để truy xuất thông tin của tất cả các student từ bộ nhớ cache
+        students = self.env.cache.get(key)
+        if students is None:
+            # tìm kiếm tất cả các bản ghi
+            # sau đó đọc thông tin của tất cả các bản ghi này
+            students = self.search([]).read()
+            # lưu trữ chúng vào bộ nhớ cache bằng cách sử dụng phương thức set của đối tượng cache
+            self.env.cache.set(key, students)
+        return students
     

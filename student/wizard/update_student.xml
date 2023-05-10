@@ -44,8 +44,7 @@
 									<field name="logo" string="logo" widget="image"/>                                    
 								</group>								
                                 <group>                                    
-                                    <field name="score"/>
-                                    <field name="ranking"/>
+                                    <field name="score"/>                                    
 								</group>
 							</group>
 						</page>							
