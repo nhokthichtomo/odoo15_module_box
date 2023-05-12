@@ -81,19 +81,6 @@
         <field name="name">School</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">school</field>
-        <field name="view_mode">tree,form,kanban</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                create your first school !
-            </p>
-        </field>    
+        <field name="view_mode">tree,form,kanban</field>          
     </record>
-        
-    
-
-    
-
-    
-
 </odoo>

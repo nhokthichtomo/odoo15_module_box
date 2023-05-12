@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="grow_up_cron" model="ir.cron">
+        <field name="name">grow up test</field>
+        <field name="model_id" ref="model_test2"/>
+        <field name="state">code</field>
+        <field name="code">model.up_number()</field>
+        <field name='interval_number'>1</field>
+        <field name='interval_type'>minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+    <data>
+        <record id="test2_view" model="ir.ui.view">
+            <field name="name">Test2</field>
+            <field name="model">test2</field>
+            <field name="arch" type="xml">
+            <header>
+                <button name="refresh" string="Refresh" type="object"
+                class="btn-primary" />
+            </header>
+            <tree>
+                <field name="number" />
+                <field name="after" />
+            </tree>
+            </field>
+        </record>
+        <record id="test2_action" model="ir.actions.act_window">
+            <field name="name">Test2</field>
+            <field name="res_model">test2</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

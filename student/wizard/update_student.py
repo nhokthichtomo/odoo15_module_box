@@ -8,13 +8,13 @@ class UpdateWizard(models.TransientModel):
     _name = "student.update.wizard"
     _description = "Update for student model"
     
-    name = fields.Char(string='Name')    #(required=True : gia tri bat buoc)
+    name = fields.Char(string='Name')    
     age = fields.Integer(string='Age')
     date_of_birth = fields.Date(string='Date of birth')
-    gender = fields.Selection(selection=[('male', 'Male'), ('female', 'Female')], string='Gender', default='false')
+    gender = fields.Selection(selection=[('male', 'Male'), ('female', 'Female')], string='Gender')
     code = fields.Integer(string='Code')    
     address = fields.Text(string='Address')    
-    has_experience = fields.Boolean(string='Has Experience', default=False)
+    has_experience = fields.Boolean(string='Has Experience')
     city = fields.Text(string='City')
     introduce = fields.Html(string='Introduce')
     attendance_time_start = fields.Datetime(string='Attendance time start')

@@ -16,13 +16,11 @@ class Student(models.Model):
     introduce = fields.Html(string='Introduce')     #lưu trữ đoạn văn bản được định dạng dưới dạng HTML
     date_of_birth = fields.Date(string='Date of birth')
     attendance_time_start = fields.Datetime(string='Attendance time start')
-    email = fields.Char(string='Email', required=True)
+    email = fields.Char(string='Email', required=True, widget='text')
     score = fields.Float(String='Score')    
-    logo = fields.Image(string='Logo', max_width=128, max_height=128)
+    logo = fields.Image(string='Logo', width=10, height=10)
     date_start = fields.Date(string='Start Date')
     date_end = fields.Date(string='End Date')
-    project_id = fields.Many2one('project.project', string='Project')   #Many2one được sử dụng để thiết lập mối quan hệ nhiều-một (many-to-one) giữa hai đối tượng
-    teacher_id = fields.Many2one('teacher', string='Teacher')
     is_private = fields.Boolean(string='Is Private', groups='base.studen_group_admin')
     
     _sql_constraints = [        
@@ -102,21 +100,28 @@ class Student(models.Model):
         if group.id not in user.groups_id.ids:
             # Thêm nhóm vào danh sách nhóm của người dùng
             user.write({'groups_id': [(4, group.id)]})
+            
+    @api.returns        
+    def copy(self, default=None):
+        res = super(Student, self).copy(default)
+        default = dict(default or {})
+        default.update({'name': 'Copy of %s' % (self.name)})
+        return res
+    
+        
+    def copy(self, default=None):
+        res = super(Student, self).copy(default)
+        #dict default mới, chuyển tham số default vào hoặc tạo ra một dict rỗng nếu default là None
+        default = dict(default or {})
+        #thêm một giá trị cho trường name trong dict default
+        default.update({'name': 'Copy of %s' % (self.name)})
+        #Tạo ra một bản sao của đối tượng hiện tại
+        return res
     
     
-    # @api.model
-    # def copy(self, default=None):
-    #     #dict default mới, chuyển tham số default vào hoặc tạo ra một dict rỗng nếu default là None
-    #     default = dict(default or {})
-    #     #thêm một giá trị cho trường name trong dict default
-    #     default.update({'name': 'Copy of %s' % (self.name)})
-    #     #Tạo ra một bản sao của đối tượng hiện tại
-    #     return super(Student, self).copy(default)
-    
-    # @api.model
     # def search(self, args, offset=0, limit=None, order=None, count=False):
     #     #tìm kiếm các bản ghi thỏa mãn các điều kiện tìm kiếm được chỉ định.
-    #     records = self.env['student'].search(args, offset=offset, limit=limit, order=order, count=count)
+    #     records = self.env['student'].sudo().search(args, offset=offset, limit=limit, order=order, count=count)
     #     #trả về danh sách các bản ghi thỏa mãn các điều kiện tìm kiếm
     #     return records
     

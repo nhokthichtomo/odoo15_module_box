@@ -71,13 +71,7 @@
         <field name="name">Language</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">language</field>
-        <field name="view_mode">tree,form,kanban</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">
-                create your first language !
-            </p>
-        </field>    
+        <field name="view_mode">tree,form,kanban</field>    
     </record>
         
     

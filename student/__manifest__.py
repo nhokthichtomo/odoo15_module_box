@@ -16,6 +16,7 @@
         'views/language_view.xml',
         'views/student_inheritance_view.xml',
         'wizard/update_student.xml',
+        #'data/test.xml',
         ],
     'images': [],
     'installable': True,
